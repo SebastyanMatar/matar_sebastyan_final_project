@@ -263,6 +263,23 @@ class Mob4(Sprite):
         self.pos = vec(WIDTH/2, HEIGHT/2)
         self.cd = Cooldown()
         self.tagged = False
+
+class Boss(Sprite):
+    def __init__(self, game, x, y, w, h, kind):
+        Sprite.__init__(self)
+        self.game = game
+        self.image = pg.Surface((w, h))
+        self.image.fill(RED)
+        self.image = pg.image.load(os.path.join(img_folder, "Boss")).convert()
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+        self.kind = kind
+        self.pos = vec(WIDTH/2, HEIGHT/2)
+        self.cd = Cooldown()
+        self.tagged = False
+
+
     def init(self):
 #Groups all sprites
         self.sprites = pg.sprite.Group()
@@ -271,6 +288,7 @@ class Mob4(Sprite):
         self.power_ups = pg.sprite.Group()
         self.mob2 = pg.sprite.Group()
         self.mob3 = pg.sprite.Group()
+        self.Boss = pg.sprite.Group()
 
 
 def update(self):
